@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ceelxbot
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /api/status
+    disk:
+      name: sessions
+      mountPath: /app/sessions
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OWNER_NUMBER
+        sync: false
